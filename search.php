@@ -27,7 +27,7 @@
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
-                <h1>Semester Selection</h1>
+                <h1>Criteria Selection</h1>
             </div>
         </div>
         <div class="row">
@@ -40,6 +40,7 @@
             </select></div>
             <div class="col-md-3">
                 <select name="subj">
+                <option value="">Any Subject</option>
                 <option value="CPSC">Computer Science</option>
                 <option value="POLS">Political Science</option>
                 <option value="THEAT">Theater</option>
@@ -54,15 +55,16 @@
     
     <?php
           $semesterID=$_POST["id"];
+          $subj=$_POST["subj"];
           $username = 'kalebcorcoran23';
           $password = '';
           //$pdo = new PDO('mysql:host=localhost;dbname=tech_support', $username, $password);
           $con = mysqli_connect('localhost', $username, $password, 'csu_reg');
           // $result = $con->
-          $query = "SELECT Class.name, Class.desc, Class.crn, sect.sect, sect.location, Professor.name, Professor.officeHours, Professor.officeLocation FROM sect LEFT JOIN Professor ON sect.professor_id=user_id RIGHT JOIN Class on sect.crn=Class.crn WHERE semesterID = ?";
+          $query = "SELECT Class.name, Class.desc, Class.crn, sect.sect, sect.location, Professor.name, Professor.officeHours, Professor.officeLocation FROM sect LEFT JOIN Professor ON sect.professor_id=user_id RIGHT JOIN Class on sect.crn=Class.crn WHERE semesterID = ? AND subject = ?";
           if ($stmt = $con->prepare($query)) {
           $stmt = $con->prepare($query);
-          $stmt->bind_param('s', $semesterID);
+          $stmt->bind_param('ss', $semesterID, $subj);
           $stmt->execute();
           $stmt->bind_result($cname,$desc,$crn,$sect,$clocation,$name,$hours,$location);
           echo("<div class='table-responsive'>
