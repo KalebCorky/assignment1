@@ -70,9 +70,6 @@
           echo("<div class='table-responsive'>
             <table class='table'>
             <tr><th>Name</th><th>Description</th><th>CRN</th><th>Section ID</th><th>Meeting Location</th><th>Professor</th><th>Office Hours</th><th>Office Location</th></tr>");
-          if($stmt->fetch() == False) {
-              echo("<tr><td>No results to display.</td></tr>");
-          }
           while ($stmt->fetch())
               {
                   echo("<tr><td>" . $cname . "</td><td>" . $desc . "</td><td>" . $crn . "</td><td>" . $sect . "</td><td>" . $clocation . "</td><td>" . $name . "</td><td>" . $hours . "</td><td>" . $location . "</td></tr>");
