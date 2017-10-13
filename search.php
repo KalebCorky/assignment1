@@ -24,21 +24,31 @@
     <div class="page-header">
       <h1>Corcoran Institute For Aspiring World Dictators</h1>
     </div>
-    <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-12">
                 <h1>Semester Selection</h1>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-2-offset">
             <form action="search.php" method="post">
             <select name="id">
                 <option value="1">Summer 2017</option>
                 <option value="2">Fall 2017</option>
                 <option value="3">Spring 2018</option>
-            </select>
-        </div>
-        <div class="row">
-            <div class="col-md-6"><p><input type="submit" id="submit" class="btn btn-primary btn-lg"></input></p><br /></div></form>
+            </select></div>
+            <div class="col-md-3">
+                <select name="subj">
+                <option value="CPSC">Computer Science</option>
+                <option value="POLS">Political Science</option>
+                <option value="THEAT">Theater</option>
+                <option value="PHIL">Philosophy</option>
+                </select>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-12"><p><input type="submit" id="submit" class="btn btn-primary btn-lg"></input></p><br /></div></form>
         </div>
     </div>
     
@@ -57,11 +67,10 @@
           $stmt->bind_result($cname,$desc,$crn,$sect,$clocation,$name,$hours,$location);
           echo("<div class='table-responsive'>
             <table class='table'>
-            <tr><th>Name</th><th>Description</th><th>CRN</th><th>Section ID</th><th>Meeting Location</th><th>Professor</th><th>Office Hours</th><th>Office Location</th></tr>
-             <tr>");
+            <tr><th>Name</th><th>Description</th><th>CRN</th><th>Section ID</th><th>Meeting Location</th><th>Professor</th><th>Office Hours</th><th>Office Location</th></tr>");
           while ($stmt->fetch())
               {
-                  echo("<td>" . $cname . "</td><td>" . $desc . "</td><td>" . $crn . "</td><td>" . $sect . "</td><td>" . $clocation . "</td><td>" . $name . "</td><td>" . $hours . "</td><td>" . $location . "</td></tr>");
+                  echo("<tr><td>" . $cname . "</td><td>" . $desc . "</td><td>" . $crn . "</td><td>" . $sect . "</td><td>" . $clocation . "</td><td>" . $name . "</td><td>" . $hours . "</td><td>" . $location . "</td></tr>");
              }
           echo("</table></div>");
           $stmt->close();
@@ -76,9 +85,8 @@
       <hr>
 
       <footer>
-        <p>&copy; 2016 Company, Inc.</p>
+        <p>&copy; 2017 Corcoran Institute, Inc.</p>
       </footer>
-      <!-- /container -->
 
 
       <!-- Bootstrap core JavaScript
